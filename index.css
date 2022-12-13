@@ -94,7 +94,7 @@ main {
     height: 100%;
 }
 
-.health-bar-inner .danger {
+.danger {
     background: #d1435f;
 }
 

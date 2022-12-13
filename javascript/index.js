@@ -1,33 +1,7 @@
 import characterData from "./data.js"
+import Character from "./Character.js"
 
-class Character {
-    constructor(data) {
-        Object.assign(this, data)
-        this.diceRollHtml = getDicePlaceholders(this.diceCount)
-    }
-
-    setDiceRollHtml() {
-        this.diceRollArray = getDiceRollArray(this.diceCount)
-        this.diceRollHtml = this.diceRollArray.map( (num) => 
-            `<div class="dice">${num}</div>` ).join("")
-        return this.diceRollHtml
-    }
-
-    getCharacterCardHtml() {
-        return `
-            <h3 class="char-name">${this.name}</h3>
-            <img class="char-avatar" src="${this.avatar}" alt="picture of ${this.name}">
-            <p class="health">health: <strong>${this.health}</strong></p>
-            <div class="health-bar-outer">
-                <div class="health-bar-inner">
-                </div>
-            </div>
-            <div class="dice-container">
-            ${this.diceRollHtml}
-            </div>
-        `
-    }
-}
+export {getDicePlaceholders, getDiceRollArray}
 
 function getDicePlaceholders(diceCount) {
     const dicePlaceholders = new Array(diceCount).fill(0).map( 
@@ -58,6 +32,8 @@ const currentMonster = getNewMonster()
 function attack() {
     hero.setDiceRollHtml()
     currentMonster.setDiceRollHtml()
+    hero.takeDemage(currentMonster.currentDiceRollArray)
+    currentMonster.takeDemage(hero.currentDiceRollArray)
     render()
 }
 
