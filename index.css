@@ -29,7 +29,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin: auto;
+    margin: 2rem auto auto;
 }
 
 #hero,
@@ -55,7 +55,7 @@ main {
     width: 100%;
     text-align: center;
     letter-spacing: 0.08em;
-    font-size: 1.75rem;
+    font-size: 2rem;
 }
 
 .char-avatar {
@@ -70,7 +70,7 @@ main {
 
 .health {
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     width: 90%;
     text-align: left;
     color:#ccc;
@@ -100,7 +100,7 @@ main {
 
 .dice-container {
     width: 100%;
-    height: 20%;
+    height: 25%;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -157,7 +157,14 @@ button {
     box-shadow: 0px 6px 10px -4px rgba(0,0,0,0.4);
 }
 
-button:focus { outline: 0 }
+button:focus { 
+    outline: 0;
+}
+
+button:disabled {
+    opacity: 50%;
+    cursor: not-allowed;
+}
 
 #play-again-btn {
     display: none;
@@ -165,7 +172,7 @@ button:focus { outline: 0 }
 
 .end-game {
     font-size: 1.75rem;
-    margin-top: 15%;
+    margin-top: 5%;
     text-align: center;
 }
 

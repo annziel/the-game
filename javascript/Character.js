@@ -34,7 +34,7 @@ class Character {
         return this.healthBarHtml
     }
 
-    getCharacterCardHtml() {
+    getCharacterHtml() {
         return `
             <h3 class="char-name">${this.name}</h3>
             <img class="char-avatar" src="${this.avatar}" alt="picture of ${this.name}">
