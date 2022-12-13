@@ -20,14 +20,14 @@ const getDiceRollArray = (diceCount) => {
 const diceRoll = () => Math.floor(Math.random() * 6 ) + 1
 
 
-const hero = new Character(characterData.hero)
-const monstersArray = ["orc", "demon", "goblin"]
+let hero = new Character(characterData.hero)
+let monstersArray = ["orc", "demon", "goblin"]
 
 const getNewMonster = () => {
     const currentMonsterData = characterData[monstersArray.shift()]
     return currentMonsterData ? new Character(currentMonsterData) : {}
 }
-const currentMonster = getNewMonster()
+let currentMonster = getNewMonster()
 
 function attack() {
     hero.setDiceRollHtml()
@@ -35,6 +35,18 @@ function attack() {
     hero.takeDemage(currentMonster.currentDiceRollArray)
     currentMonster.takeDemage(hero.currentDiceRollArray)
     render()
+    if (hero.dead) {
+        endGame()
+    }
+    if (currentMonster.dead) {
+        if (monstersArray.length === 0) {
+            endGame()
+        }
+        else {
+            currentMonster = getNewMonster()
+            render()
+        }
+    }
 }
 
 function render() {
@@ -44,4 +56,42 @@ function render() {
 
 render()
 
-document.getElementById("attack-btn").addEventListener("click", attack)
+
+const attackBtn = document.getElementById("attack-btn")
+const playAgainBtn = document.getElementById("play-again-btn")
+
+attackBtn.addEventListener("click", attack)
+
+function endGame() {
+    const endMessage = hero.dead && currentMonster.dead ?
+        "No victors - all creatures are dead" :
+        hero.dead ? "The monsters are Victorious" :
+        "The Hero Wins"
+    const endEmoji = hero.dead ? "☠️" : "🔮"
+    
+    attackBtn.style.display = "none"
+    playAgainBtn.style.display = "block"
+    
+    document.querySelector("main").innerHTML = `
+        <div class="end-game">
+            <h2>Game Over</h2> 
+            <h3 class="end-message">${endMessage}</h3>
+            <p class="end-emoji">${endEmoji}</p>
+        </div>
+    `
+}
+
+playAgainBtn.addEventListener("click", playAgain)
+
+function playAgain() {
+    document.getElementById("play-again-btn").style.display = "none"
+    attackBtn.style.display = "block"
+    document.querySelector("main").innerHTML = `
+        <div id="hero"></div>
+        <div id="monster"></div>
+    `
+    hero = new Character(characterData.hero)
+    monstersArray = ["orc", "demon", "goblin"]
+    currentMonster = getNewMonster()
+    render()
+}

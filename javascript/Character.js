@@ -18,7 +18,7 @@ class Character {
         this.demage = scoreArray.reduce( (total, dice) => total + dice)
         this.health -= this.demage
         if (this.health <= 0) {
-            this.death = true
+            this.dead = true
             this.health = 0
         }
     }

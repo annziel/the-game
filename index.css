@@ -159,11 +159,21 @@ button {
 
 button:focus { outline: 0 }
 
-.end-game{
-    margin-top: 25%;
+#play-again-btn {
+    display: none;
+}
+
+.end-game {
+    font-size: 1.75rem;
+    margin-top: 15%;
     text-align: center;
 }
 
-.end-emoji{
+.end-message {
+    font-size: 1.5rem;
+}
+
+.end-emoji {
     font-size: 80px;
+    margin: 1rem 0;
 }
