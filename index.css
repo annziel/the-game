@@ -32,6 +32,26 @@ main {
     margin: 2rem auto auto;
 }
 
+#welcome-message {
+    flex-grow: 3;
+    text-align: center;
+}
+
+#welcome-message h2 {
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+#welcome-message p {
+    font-size: 1.25rem;
+}
+
+.hero-option {
+    cursor: pointer;
+    width: 100%;
+    height: 100%
+}
+
 #hero,
 #monster {
     flex-basis: 300px;
@@ -48,6 +68,12 @@ main {
                 0 0 0.75rem #ACACAC;
     text-align: center;
     position: relative;
+}
+
+.choose-hero #hero:hover,
+.choose-hero #monster:hover {
+    box-shadow: inset 0 0 0.75rem #585858,
+                0 0 1rem #CAE6EF;
 }
 
 .char-name {
@@ -170,7 +196,8 @@ button:disabled {
     display: none;
 }
 
-.end-game {
+#end-game {
+    display: none;
     font-size: 1.75rem;
     margin-top: 5%;
     text-align: center;
