@@ -1,4 +1,4 @@
-import {getDicePlaceholders, getDiceRollArray} from "./index.js"
+import {getDicePlaceholders, getDiceRollArray} from "./utils.js"
 
 class Character {
     constructor(data) {

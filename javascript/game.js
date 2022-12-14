@@ -1,31 +1,14 @@
 import characterData from "./data.js"
 import Character from "./Character.js"
 
-export {getDicePlaceholders, getDiceRollArray}
 
 const attackBtn = document.getElementById("attack-btn")
 const playAgainBtn = document.getElementById("play-again-btn")
 
 
 
-function getDicePlaceholders(diceCount) {
-    const dicePlaceholders = new Array(diceCount).fill(0).map( 
-        () => `<div class="dice-placeholder"></div>` ).join("")
-    return dicePlaceholders
-}
 
-const getDiceRollArray = (diceCount) => {
-    let diceRollArray = []
-    for (let i = 1; i <= diceCount; i++) {
-        diceRollArray.push(diceRoll())
-    }
-    return diceRollArray
-}
-
-const diceRoll = () => Math.floor(Math.random() * 6 ) + 1
-
-
-let hero = new Character(characterData.hero)
+let hero = new Character(characterData.wizard)
 let monstersArray = ["orc", "demon", "goblin"]
 
 const getNewMonster = () => {
@@ -34,13 +17,13 @@ const getNewMonster = () => {
 }
 let currentMonster = getNewMonster()
 
-function render() {
+function renderGame() {
     document.getElementById("hero").innerHTML = hero.getCharacterHtml()
     document.getElementById("monster").innerHTML = currentMonster.getCharacterHtml()
     attackBtn.disabled = false
 }
 
-render()
+renderGame()
 
 
 attackBtn.addEventListener("click", attack)
@@ -50,7 +33,7 @@ function attack() {
     currentMonster.setDiceRollHtml()
     hero.takeDemage(currentMonster.currentDiceRollArray)
     currentMonster.takeDemage(hero.currentDiceRollArray)
-    render()
+    renderGame()
     
     if (hero.dead) {
         document.getElementById("hero").style.background = "#420000"
@@ -71,7 +54,7 @@ function attack() {
                 document.getElementById("monster").style.background = "#231D24"
                 document.getElementById("monster").style.transition = "none"
                 currentMonster = getNewMonster()
-                render()}
+                renderGame()}
             , 2000)
             
         }
@@ -112,8 +95,8 @@ function playAgain() {
         <div id="hero"></div>
         <div id="monster"></div>
     `
-    hero = new Character(characterData.hero)
+    hero = new Character(characterData.wizard)
     monstersArray = ["orc", "demon", "goblin"]
     currentMonster = getNewMonster()
-    render()
+    renderGame()
 }
