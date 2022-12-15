@@ -75,13 +75,13 @@ function attack() {
     
     if (hero.dead) {
         heroEl.style.background = "#420000"
-        heroEl.style.transition = "background-color 1.75s"
+        heroEl.style.transition = "background-color 1.25s"
 
         endGame()
     }
     if (currentMonster.dead) {
         monsterEl.style.background = "#420000"
-        monsterEl.style.transition = "background-color 1.75s"
+        monsterEl.style.transition = "background-color 1.25s"
 
         if (monstersArray.length === 0) {
             endGame()
@@ -93,7 +93,7 @@ function attack() {
                 monsterEl.style.transition = "none"
                 currentMonster = getNewMonster()
                 renderGame()}
-            , 2000)
+            , 1500)
             
         }
     }
@@ -120,8 +120,7 @@ function endGame() {
         attackBtn.style.display = "none"
         playAgainBtn.style.display = "block"
         playAgainBtn.disabled = false
-    }, 2000)
-
+    }, 1500)
 }
 
 playAgainBtn.addEventListener("click", playAgain)
@@ -130,7 +129,9 @@ function playAgain() {
     playAgainBtn.style.display = "none"
     endGameEl.style.display = "none"
     heroEl.style.background = "#231d24"
+    heroEl.style.transition = "none"
     monsterEl.style.background = "#231d24"
+    monsterEl.style.transition = "none"
     heroEl.style.display = "block"
     monsterEl.style.display = "block"
     hero = {}

@@ -10,7 +10,7 @@ class Character {
     setDiceRollHtml() {
         this.currentDiceRollArray = getDiceRollArray(this.diceCount)
         this.diceRollHtml = this.currentDiceRollArray.map( (num) => 
-            `<div class="dice">${num}</div>` ).join("")
+            `<img class="dice" src="images/dice-${num}.png">` ).join("")
         return this.diceRollHtml
     }
 
