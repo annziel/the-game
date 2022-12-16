@@ -37,7 +37,10 @@ class Character {
     getCharacterHtml() {
         return `
             <h3 class="char-name">${this.name}</h3>
-            <img class="char-avatar" src="${this.avatar}" alt="picture of ${this.name}">
+            <div class="char-avatar-container">
+                <div class="char-avatar" style="background-image:url(${this.avatar})">
+                </div>
+            </div>
             <p class="health">health: <strong>${this.health}</strong></p>
             <div class="health-bar-outer">
                 ${this.getHealthBar()}

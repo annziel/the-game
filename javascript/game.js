@@ -1,7 +1,7 @@
 import characterData from "./data.js"
 import Character from "./Character.js"
 
-const main = document.querySelector("main")
+const charContainer = document.querySelector(".char-container")
 const welcomeMessage = document.getElementById("welcome-message")
 const heroEl = document.getElementById("hero")
 const monsterEl = document.getElementById("monster")
@@ -12,16 +12,16 @@ const playAgainBtn = document.getElementById("play-again-btn")
 let hero
 
 function setChooseHeroCard() {
-    main.classList = "choose-hero"
+    charContainer.classList.add("choose-hero")
     let option1 = new Character(characterData.wizard)
     let option2 = new Character(characterData.fairy)
 
     welcomeMessage.style.display = "block"
 
-    heroEl.innerHTML = `<div class="hero-option" id="option1">${option1.getCharacterHtml()}</div>`
-    monsterEl.innerHTML = `<div class="hero-option" id="option2">${option2.getCharacterHtml()}</div>`
+    heroEl.innerHTML = option1.getCharacterHtml()
+    monsterEl.innerHTML = option2.getCharacterHtml()
 
-    attackBtn.style.display = "none"
+    document.getElementById("actions").style.display = "none"
 
     heroEl.addEventListener("click", createHero)
     monsterEl.addEventListener("click", createHero)
@@ -36,13 +36,13 @@ function createHero(e) {
     }
     heroEl.removeEventListener("click", createHero)
     monsterEl.removeEventListener("click", createHero)
+    charContainer.classList.remove("choose-hero")
     welcomeMessage.style.display = "none"
-    main.classList.remove("choose-hero")
+    document.getElementById("actions").style.display = "flex"
     renderGame()
 }
 
 setChooseHeroCard()
-
 
 
 let monstersArray = ["orc", "demon", "goblin"]
@@ -52,9 +52,6 @@ const getNewMonster = () => {
     return currentMonsterData ? new Character(currentMonsterData) : {}
 }
 let currentMonster = getNewMonster()
-
-
-
 
 
 function renderGame() {
@@ -109,10 +106,11 @@ function endGame() {
     const endEmoji = hero.dead ? "☠️" : "🔮"
     
     setTimeout(() => {
+        document.body.classList.add("body-game-over");
         heroEl.style.display = "none"
         monsterEl.style.display = "none"
         endGameEl.innerHTML = `
-            <h2>Game Over</h2> 
+            <h2 id="game-over">Game Over</h2> 
             <h3 class="end-message">${endMessage}</h3>
             <p class="end-emoji">${endEmoji}</p>
         `
@@ -120,20 +118,23 @@ function endGame() {
         attackBtn.style.display = "none"
         playAgainBtn.style.display = "block"
         playAgainBtn.disabled = false
+        charContainer.style.display = "none"
     }, 1500)
 }
 
 playAgainBtn.addEventListener("click", playAgain)
 
 function playAgain() {
+    document.body.classList.remove("body-game-over");
     playAgainBtn.style.display = "none"
+    charContainer.style.display = ""
     endGameEl.style.display = "none"
     heroEl.style.background = "#231d24"
     heroEl.style.transition = "none"
     monsterEl.style.background = "#231d24"
     monsterEl.style.transition = "none"
-    heroEl.style.display = "block"
-    monsterEl.style.display = "block"
+    heroEl.style.display = ""
+    monsterEl.style.display = ""
     hero = {}
     monstersArray = ["orc", "demon", "goblin"]
     currentMonster = getNewMonster()
