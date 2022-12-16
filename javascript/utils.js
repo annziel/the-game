@@ -1,3 +1,4 @@
+// export used in Character.js
 export {getDicePlaceholders, getDiceRollArray}
 
 function getDicePlaceholders(diceCount) {

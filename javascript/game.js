@@ -6,22 +6,24 @@ const welcomeMessage = document.getElementById("welcome-message")
 const heroEl = document.getElementById("hero")
 const monsterEl = document.getElementById("monster")
 const endGameEl = document.getElementById("end-game")
+const actions = document.getElementById("actions")
 const attackBtn = document.getElementById("attack-btn")
 const playAgainBtn = document.getElementById("play-again-btn")
 
+
+// choosing the hero
 let hero
 
 function setChooseHeroCard() {
+    welcomeMessage.style.display = "block"
     charContainer.classList.add("choose-hero")
+    actions.style.display = "none"
+
     let option1 = new Character(characterData.wizard)
     let option2 = new Character(characterData.fairy)
 
-    welcomeMessage.style.display = "block"
-
     heroEl.innerHTML = option1.getCharacterHtml()
     monsterEl.innerHTML = option2.getCharacterHtml()
-
-    document.getElementById("actions").style.display = "none"
 
     heroEl.addEventListener("click", createHero)
     monsterEl.addEventListener("click", createHero)
@@ -31,19 +33,22 @@ function createHero(e) {
     if (e.target.closest("#hero")) {
         hero = new Character(characterData.wizard)
     }
-    else if (e.target.closest("#monster") ) {
+    else if (e.target.closest("#monster")) {
         hero = new Character(characterData.fairy)
     }
+
     heroEl.removeEventListener("click", createHero)
     monsterEl.removeEventListener("click", createHero)
-    charContainer.classList.remove("choose-hero")
+
     welcomeMessage.style.display = "none"
-    document.getElementById("actions").style.display = "flex"
+    charContainer.classList.remove("choose-hero")
+    actions.style.display = "flex"
     renderGame()
 }
 
 setChooseHeroCard()
 
+// creating monsters
 
 let monstersArray = ["orc", "demon", "goblin"]
 
@@ -53,6 +58,7 @@ const getNewMonster = () => {
 }
 let currentMonster = getNewMonster()
 
+// the game starts
 
 function renderGame() {
     heroEl.innerHTML = hero.getCharacterHtml()
@@ -60,6 +66,8 @@ function renderGame() {
     attackBtn.style.display = "block"
     attackBtn.disabled = false
 }
+
+// the game itself
 
 attackBtn.addEventListener("click", attack)
 
@@ -121,6 +129,8 @@ function endGame() {
         charContainer.style.display = "none"
     }, 1500)
 }
+
+// the play again event
 
 playAgainBtn.addEventListener("click", playAgain)
 

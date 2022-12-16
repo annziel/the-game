@@ -1,3 +1,4 @@
+// import used for initial setting of diceRollHtml and in setDiceRoll method
 import {getDicePlaceholders, getDiceRollArray} from "./utils.js"
 
 class Character {
