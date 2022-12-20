@@ -1,3 +1,13 @@
+// set a viewportHeight to include toolbar in mobile devices
+function calcTheHeight() {
+    let vh = window.innerHeight
+    document.documentElement.style.setProperty("--inner-vh", `${vh}px`)
+}
+
+calcTheHeight()
+document.documentElement.addEventListener("resize", calcTheHeight)
+
+// set the JS environment
 import characterData from "./data.js"
 import Character from "./Character.js"
 
