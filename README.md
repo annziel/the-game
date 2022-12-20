@@ -1,11 +1,13 @@
 
 # Choose your hero, roll the dice to attack, and fight against monsters!
 
-[<img alt="welcome-banner" src="images/welcome.png">](#) 
+[<img alt="welcome-banner" src="images/welcome.png">](https://annziel.github.io/the-game/) 
+
+## About the project
 
 Initially, I built "The Game" during the Module 7 of [The Frontend Developer Career Path](https://scrimba.com/learn/frontend) on Scrimba. Then I wrote it again alone to practice the learned material and add extra features - you can choose your hero, fight the monsters, and use a button to play again without refreshing the page!
 
-**[Play "The Game"](#) and have fun! It's responsive, so check it out on your phone!** 😉
+**[Play "The Game"](https://annziel.github.io/the-game/) and have fun! It's responsive, so check it out on your phone!** 😉
 
 ## What did I learn during the course?
 
