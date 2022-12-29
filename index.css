@@ -24,6 +24,7 @@
 /* || SITEWIDE */
 
 body {
+    touch-action: manipulation;
     --inner-vh: 100%;
     --gap: 4vw;
     margin: 0;
