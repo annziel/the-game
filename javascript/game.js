@@ -1,11 +1,12 @@
-// set a viewportHeight to include toolbar in mobile devices
+// set a viewportHeight, prevent default double tap behavior
+document.addEventListener("dblclick", e => e.preventDefault())
+
 function calcTheHeight() {
     let vh = window.innerHeight * 0.01
     document.documentElement.style.setProperty("--inner-vh", `${vh}px`)
 }
 
 calcTheHeight()
-
 document.documentElement.addEventListener("resize", calcTheHeight)
 document.documentElement.addEventListener("orientationchange", calcTheHeight);
 
